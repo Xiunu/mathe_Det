@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class testDet {
     public double[][] A;
     public int nrOfDigits;
-    
+
     public testDet(String filename){
         test(filename);
     }
@@ -18,13 +18,15 @@ public class testDet {
             return;
         }
         nrOfDigits = 1;
-        
         System.out.println("A:");
         showMatrix(A, nrOfDigits);
         System.out.println();
         
         det.nrOfMult = 0;
-        System.out.println("det(A) = "+det.calcDet(A));
+        System.out.println("By Recursion: det(A) = "+det.calcDetRec(A));
+        System.out.println("By Itaration: det(A) = "+det.calcDet(A));
+        
+        
         System.out.println("Anzahl der Multiplikationen: "+det.nrOfMult);
     }
 

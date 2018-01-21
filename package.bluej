@@ -2,10 +2,10 @@
 dependency1.from=testDet
 dependency1.to=det
 dependency1.type=UsesDependency
-editor.fx.0.height=737
-editor.fx.0.width=814
-editor.fx.0.x=872
-editor.fx.0.y=220
+editor.fx.0.height=1414
+editor.fx.0.width=2574
+editor.fx.0.x=-7
+editor.fx.0.y=-7
 objectbench.height=152
 objectbench.width=762
 package.divider.horizontal=0.6
