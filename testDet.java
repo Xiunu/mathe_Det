@@ -23,7 +23,7 @@ public class testDet {
         System.out.println();
         
         det.nrOfMult = 0;
-        System.out.println("By Recursion: det(A) = "+det.calcDetRec(A));
+        System.out.println("By Recursion: det(A) = "+det.calcDetRecHolder(A));
         System.out.println("Anzahl der Multiplikationen (Rekursion): "+det.nrOfMult);
         System.out.println("By Itaration: det(A) = "+det.calcDet(A));
         System.out.println("Anzahl der Multiplikationen (Iteration): "+det.nrOfMult);

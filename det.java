@@ -23,6 +23,9 @@ public class det {
 
     //Berechnung mit 1. Normalform
     public static double calcDet(double[][] arr) {
+
+        // nrOfMult = 2n+n*n+1+SUMME((n-1) * n)
+
         nrOfMult = 0;
         int nCount = arr.length;
         //multiplier which needs to be applied to the det;
@@ -47,12 +50,12 @@ public class det {
             //set currently operating line in currently operating column to 1 for easier operation
 
             curMultiplier = curMultiplier * arr[curGaussStep][curGaussStep]; //apply cur Value to multiplier
-            nrOfMult++;
+            nrOfMult++; // n mal audgefuehrt
             double localMulti = arr[curGaussStep][curGaussStep]; //set localMultiplier to make the first element ( !=0 ) -> 1
             for (int s = 0; s < nCount; s++) {
                 arr[curGaussStep][s] = arr[curGaussStep][s] / localMulti;
                 //apply the multiplier to the whole line
-                nrOfMult++;
+                nrOfMult++; // n*n mal ausg
             }
 
             // setting every line with a higher index than curGaussStep to zero in currently operating column by line wise subtraction
@@ -60,13 +63,13 @@ public class det {
                 double locMultiplier = arr[z][curGaussStep];
                 for (int s = curGaussStep; s < nCount; s++) {
                     arr[z][s] = arr[z][s] - locMultiplier * arr[curGaussStep][s];
-                    nrOfMult++;
+                    nrOfMult++; // n-1 nach kleinem gauss //Annahme
                 }
             }
         }
         for (int i = 0; i < nCount; i++) {
             gDet *= arr[i][i];
-            nrOfMult++;
+            nrOfMult++; // n mal ausge
         }
         /* Printe das array
         for (int x=0; x < nCount; x++){
@@ -77,7 +80,7 @@ public class det {
             System.out.println(pS);
         }
         */
-        nrOfMult++;
+        nrOfMult++; // 1 mal
         return gDet * curMultiplier;
     }
 
@@ -128,7 +131,7 @@ public class det {
 
         return uMatrix;
     }
-    
+
     // only used to set the nrOfMult only once to 0
     public static double calcDetRecHolder ( double[][] arrRec){
         nrOfMult = 0;
@@ -146,10 +149,12 @@ public class det {
         double ret_det = 0;
         //Entwickeln nach Zeile 0
         for (int i = 0; i < arrRec.length; i++)
+        //n-neue Matritzen -> (n-1) Ordnung
         {
             //Rekrusiver Aufruf mit übergabe neuer Matrix ohne oberste (0te) Zeile und i-ter Spalte
-            ret_det += Math.pow(-1,i) * arrRec[0][i] * calcDetRec(erstelleUntermatrix(arrRec, i, 0));
             nrOfMult=nrOfMult+2;
+            ret_det += Math.pow(-1,i) * arrRec[0][i] * calcDetRec(erstelleUntermatrix(arrRec, i, 0));
+
         }
         return ret_det;
     }
