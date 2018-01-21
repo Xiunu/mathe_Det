@@ -23,6 +23,7 @@ public class det {
 
     //Berechnung mit 1. Normalform
     public static double calcDet(double[][] arr) {
+        nrOfMult = 0;
         int nCount = arr.length;
         //multiplier which needs to be applied to the det;
         double curMultiplier = 1;
@@ -46,9 +47,12 @@ public class det {
             //set currently operating line in currently operating column to 1 for easier operation
 
             curMultiplier = curMultiplier * arr[curGaussStep][curGaussStep]; //apply cur Value to multiplier
+            nrOfMult++;
             double localMulti = arr[curGaussStep][curGaussStep]; //set localMultiplier to make the first element ( !=0 ) -> 1
             for (int s = 0; s < nCount; s++) {
-                arr[curGaussStep][s] = arr[curGaussStep][s] / localMulti; //apply the multiplier to the whole line
+                arr[curGaussStep][s] = arr[curGaussStep][s] / localMulti;
+                //apply the multiplier to the whole line
+                nrOfMult++;
             }
 
             // setting every line with a higher index than curGaussStep to zero in currently operating column by line wise subtraction
@@ -56,13 +60,14 @@ public class det {
                 double locMultiplier = arr[z][curGaussStep];
                 for (int s = curGaussStep; s < nCount; s++) {
                     arr[z][s] = arr[z][s] - locMultiplier * arr[curGaussStep][s];
+                    nrOfMult++;
                 }
             }
         }
         for (int i = 0; i < nCount; i++) {
             gDet *= arr[i][i];
+            nrOfMult++;
         }
-        System.out.println(gDet * curMultiplier);
         /* Printe das array
         for (int x=0; x < nCount; x++){
             String pS = "";
@@ -72,11 +77,13 @@ public class det {
             System.out.println(pS);
         }
         */
+        nrOfMult++;
         return gDet * curMultiplier;
     }
 
     private static double sarrusDet2x2(double[][] arr) {
 
+        nrOfMult=nrOfMult+2;
         return ((arr[0][0] * arr[1][1]) - (arr[1][0] * arr[0][1]));
     }
 
@@ -121,23 +128,29 @@ public class det {
 
         return uMatrix;
     }
-
-        //Rekursive Berechnung mit Def. L.4.1.1 Skript
-        public static double calcDetRec ( double[][] arrRec){
-            // anwenden von Sarrus im falle das 2x2 Matrix vorliegt
-            if (arrRec.length==2)
-            {
-                return sarrusDet2x2(arrRec);
-            }
-            // Hier alles was passiert falls arrRec groesser als 2x2
-            double ret_det = 0;
-            //Entwickeln nach Zeile 0
-            for (int i = 0; i < arrRec.length; i++)
-            {
-                //Rekrusiver Aufruf mit übergabe neuer Matrix ohne oberste (0te) Zeile und i-ter Spalte
-                ret_det += Math.pow(-1,i) * arrRec[0][i] * calcDetRec(erstelleUntermatrix(arrRec, i, 0));
-            }
-
-            return ret_det;
-        }
+    
+    // only used to set the nrOfMult only once to 0
+    public static double calcDetRecHolder ( double[][] arrRec){
+        nrOfMult = 0;
+        return calcDetRec(arrRec);
     }
+
+    //Rekursive Berechnung mit Def. L.4.1.1 Skript
+    public static double calcDetRec ( double[][] arrRec){
+        // anwenden von Sarrus im falle das 2x2 Matrix vorliegt
+        if (arrRec.length==2)
+        {
+            return sarrusDet2x2(arrRec);
+        }
+        // Hier alles was passiert falls arrRec groesser als 2x2
+        double ret_det = 0;
+        //Entwickeln nach Zeile 0
+        for (int i = 0; i < arrRec.length; i++)
+        {
+            //Rekrusiver Aufruf mit übergabe neuer Matrix ohne oberste (0te) Zeile und i-ter Spalte
+            ret_det += Math.pow(-1,i) * arrRec[0][i] * calcDetRec(erstelleUntermatrix(arrRec, i, 0));
+            nrOfMult=nrOfMult+2;
+        }
+        return ret_det;
+    }
+}
