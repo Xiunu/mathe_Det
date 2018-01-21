@@ -1,7 +1,11 @@
 #BlueJ class context
 comment0.target=det
-comment1.params=arr
-comment1.target=double\ calcDet(double[][])
-comment2.params=A
-comment2.target=double\ calcDetRec(double[][])
-numComments=3
+comment1.params=searchColumn\ arr
+comment1.target=int\ findNextpossibleLine(int,\ double[][])
+comment2.params=lineSwap1\ lineSwap2\ arr
+comment2.target=double[][]\ swapLines(int,\ int,\ double[][])
+comment3.params=arr
+comment3.target=double\ calcDet(double[][])
+comment4.params=A
+comment4.target=double\ calcDetRec(double[][])
+numComments=5
