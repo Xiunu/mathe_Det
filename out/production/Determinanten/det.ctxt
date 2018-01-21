@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.params=A
+comment0.target=double\ calcDet(double[][])
+comment1.params=A
+comment1.target=double\ calcDetRec(double[][])
+numComments=2

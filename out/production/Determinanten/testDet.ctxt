@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=filename
+comment0.target=testDet(java.lang.String)
+comment1.params=filename
+comment1.target=void\ test(java.lang.String)
+comment2.params=filename
+comment2.target=double[][]\ readMatrixFromFile(java.lang.String)
+comment3.params=M\ nrOfDigits
+comment3.target=void\ showMatrix(double[][],\ int)
+numComments=4
